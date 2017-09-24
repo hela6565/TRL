@@ -46,13 +46,25 @@ public class Patron {
 
 	@Override
 	public boolean equals(Object o) {
-		return this.toString() == o.toString();
+		
+		// finish this: two are equal iff same patron ID
+		if (!(o instanceof Patron))
+			return false;
+		
+		Patron p = (Patron) o;
+		
+		if (p.patronID.equals(this.patronID)) {
+			return true;
+		} else {
+			return false;
+		}
+		
 	}
 
 	public String toString() {
 		String message = "Patron " + this.name + " (ID: " + patronID + ") currently has " + this.copiesOut.size() + " copies checked out.";
 		for (Copy c : this.copiesOut) {
-			message += c.toString();
+			message += " " + c.toString();
 		}
 		return message;
 	}
@@ -60,22 +72,22 @@ public class Patron {
 	public static void main(String[] args) {
 		Patron p1 = new Patron("P1", "Eric");
 
-		System.out.println(p1);
+		StdOut.println(p1);
 
 		Patron p2 = FakeDB.getPatron("P1");
 		Copy c1 = FakeDB.getCopy("C1");
 		Copy c2 = FakeDB.getCopy("C2");
 		
 		p1.checkCopyOut(c1);
-		System.out.println(p1);
+		StdOut.println(p1);
 		p1.checkCopyOut(c2);
-		System.out.println(p1);
+		StdOut.println(p1);
 		
 		p1.checkCopyIn(c2);
-		System.out.println(p1);
+		StdOut.println(p1);
 		p1.checkCopyIn(c1);
-		System.out.println(p1);		
-		
+		StdOut.println(p1);
+			
 //		
 //		Copy c3 = new Copy("C1", "Fun with Objects");
 //		Patron p3 = new Patron("Eric", "P47");

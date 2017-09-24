@@ -53,7 +53,19 @@ public class Copy {
 
 	@Override
 	public boolean equals(Object o) {
-		return this.toString() == o.toString();
+		
+		//Copy is equal if copyID string is equal
+		if (!(o instanceof Copy))
+			return false;
+		
+		Copy c = (Copy) o;
+		
+		if (c.copyID.equals(this.copyID)) {
+			return true;
+		} else {
+			return false;
+		}
+		
 	}
 
 	public static void main(String[] args) {
