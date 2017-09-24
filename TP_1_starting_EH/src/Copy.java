@@ -9,6 +9,15 @@
  *
  */
 public class Copy {
+	private String copyID;
+	private String title;
+	private Patron outTo;
+
+	public Copy(String copyID, String title) {
+		this.copyID = copyID;
+		this.title = title;
+	}	
+	
 	public String getCopyID() {
 		return copyID;
 	}
@@ -18,7 +27,7 @@ public class Copy {
 	}
 
 	public String getTitle() {
-		return title;
+		return this.title;
 	}
 
 	public void setTitle(String title) {
@@ -26,35 +35,24 @@ public class Copy {
 	}
 
 	public Patron getOutTo() {
-		return outTo;
+		return this.outTo;
 	}
 
 	public void setOutTo(Patron outTo) {
 		this.outTo = outTo;
 	}
 
-	private String copyID;
-	private String title;
-	private Patron outTo;
-
-	public Copy(String copyID, String title) {
-		this.copyID = copyID;
-		this.title = title;
-//		FakeDB.putCopy(copyID,  title);
-	}
-
 	public String toString() {
-//		if (this.outTo == null) {
-//			return "" + this.title + " (ID: " + copyID + ") is not checked out.";
-//		} else {
-			return "" + this.title + " (ID: " + copyID + ")";// is checked out to " + this.getOutTo() + ".";
-//		}
+		if (this.outTo == null) {
+			return "" + this.title + " (ID: " + copyID + ") is not checked out.";
+		} else {
+			return "" + this.title + " (ID: " + copyID + ") is checked out to " + this.getOutTo().getPatronID() + ".";
+		}
 	}
 
 	@Override
 	public boolean equals(Object o) {
 		
-		//Copy is equal if copyID string is equal
 		if (!(o instanceof Copy))
 			return false;
 		
